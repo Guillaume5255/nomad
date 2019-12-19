@@ -23,7 +23,10 @@ COMPONENT_DIRNAME   = Algos/Mads
 
 ALL_FILES           = GMesh LHSearchMethod Mads MadsInitialization MadsIteration \
                       MadsIterationUtils MadsMegaIteration MadsUpdate MegaSearchPoll \
-                      NMSearchMethod Poll Search SearchMethod \
+                      NMSearchMethod \
+					  Poll PollMethod \
+					  ClassicalPollMethod MultiPollMethod OignonPollMethod EnrichedPollMethod \
+					  Search SearchMethod \
                       SgtelibSearchMethod \
                       SpeculativeSearchMethod UserSearchMethod
 ALL_OBJ             = $(addsuffix .o, $(addprefix $(OBJ_DIR)/,$(ALL_FILES)))

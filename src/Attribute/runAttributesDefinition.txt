@@ -971,3 +971,139 @@ size_t
 ALGO_COMPATIBILITY_CHECK yes
 RESTART_ATTRIBUTE yes
 ################################################################################
+POLL_METHOD_AS_SEARCH
+bool
+false
+\( Indicate if the selected non-classic poll method has to be performed as search \)
+\(
+
+. Argument: one boolean ('yes' or 'no')
+
+. Default: false
+
+. Example: POLL_METHOD_AS_SEARCH yes
+
+\)
+\( advanced mads poll classical \)
+ALGO_COMPATIBILITY_CHECK yes
+################################################################################
+CLASSICAL_POLL
+bool
+true
+\( MADS classical poll method \)
+\(
+
+. MADS classical poll
+
+. Argument: one boolean ('yes' or 'no')
+
+. Default: true
+
+. Example: CLASSICAL_POLL no
+
+\)
+\( advanced mads poll classical \)
+ALGO_COMPATIBILITY_CHECK yes
+################################################################################
+MULTI_POLL
+bool
+false
+\( MADS multi poll method \)
+\(
+
+. MADS multi poll
+
+. Argument: one boolean ('yes' or 'no')
+
+. Default: false
+
+. Example: MULTI_POLL no
+
+\)
+\( advanced mads poll multi \)
+ALGO_COMPATIBILITY_CHECK yes
+################################################################################
+OIGNON_POLL
+bool
+false
+\( MADS oignon poll method \)
+\(
+
+. MADS oignon poll 
+
+. Argument: one boolean ('yes' or 'no')
+
+. Default: false
+
+. Example: OIGNON_POLL no
+
+\)
+\( advanced mads poll enriched \)
+ALGO_COMPATIBILITY_CHECK yes
+################################################################################
+NUMBER_OF_LAYERS
+int
+1
+\(OIGNON_POLL parameter : specifies the number of layers we want at most for the oignon poll, not necessarly respected at the begining of the run\)
+\(
+    .by default, only 1 layer is generated
+
+    .Argument : one strictly positive integer value (if called)
+\)
+\( advanced \)
+ALGO_COMPATIBILITY_CHECK yes
+################################################################################
+ENRICHED_POLL
+bool
+false
+\( MADS enriched poll method \)
+\(
+
+. MADS enriched poll 
+
+. Argument: one boolean ('yes' or 'no')
+
+. Default: false
+
+. Example: ENRICHED_POLL no
+
+\)
+\( advanced mads poll enriched \)
+ALGO_COMPATIBILITY_CHECK yes
+################################################################################
+NUMBER_OF_2N_BLOCK
+int
+1
+\(ENRICHED_POLL parameter : specifies the number of 2n blocks of directions to sample at each poll step\)
+\(
+    .by default, only 1 block of 2n directions is generated
+
+    .Argument : one strictly positive integer value (if called)
+\)
+\( advanced \)
+ALGO_COMPATIBILITY_CHECK yes
+################################################################################
+FRAME_UB
+NOMAD::Double
+1
+\(specifies if we allow the poll directions to be outside the frame \)
+\(
+    .If 1 then all the poll directions are on or inside the frame (depending on FRAME_LB = 1 or not )
+
+    .Else they can be outside the frame 
+\)
+\( advanced \)
+ALGO_COMPATIBILITY_CHECK yes
+################################################################################
+FRAME_LB
+NOMAD::Double
+1
+\(specifies if we allow the poll directions to be inside the frame\)
+\(
+    .If 1 then all the poll directions are on or outside the frame (depending on FRAME_UB = 1 or not )
+
+    .Else they can be inside the frame 
+\)
+\( advanced \)
+ALGO_COMPATIBILITY_CHECK yes
+################################################################################

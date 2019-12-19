@@ -108,7 +108,10 @@ LH_OBJ              := $(addprefix $(OBJ_DIR)/,$(LH_OBJ))
 MADS_OBJ            = GMesh.o LHSearchMethod.o \
                       Mads.o MadsInitialization.o MadsIteration.o MadsIterationUtils.o \
                       MadsMegaIteration.o MegaSearchPoll.o MadsUpdate.o \
-                      NMSearchMethod.o Poll.o Search.o SearchMethod.o \
+                      NMSearchMethod.o Poll.o \
+                      PollMethod.o \
+					  ClassicalPollMethod.o MultiPollMethod.o OignonPollMethod.o EnrichedPollMethod.o \
+                      Search.o SearchMethod.o \
                       SgtelibSearchMethod.o \
                       SpeculativeSearchMethod.o UserSearchMethod.o
 MADS_OBJ            := $(addprefix $(OBJ_DIR)/,$(MADS_OBJ))
