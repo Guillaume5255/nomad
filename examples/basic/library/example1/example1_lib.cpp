@@ -140,7 +140,7 @@ void initAllParams(std::shared_ptr<NOMAD::AllParameters> allParams)
 {
     // Parameters creation
     // Number of variables
-    size_t n = 10;
+    size_t n = 3;
     allParams->setAttributeValue( "DIMENSION", n);
     // The algorithm terminates after
     // this number of black-box evaluations
@@ -158,7 +158,7 @@ void initAllParams(std::shared_ptr<NOMAD::AllParameters> allParams)
     bbOutputTypes.push_back(NOMAD::BBOutputType::EB);     // c2000
     allParams->setAttributeValue("BB_OUTPUT_TYPE", bbOutputTypes );
     
-    allParams->setAttributeValue("DISPLAY_DEGREE", 2);
+    allParams->setAttributeValue("DISPLAY_DEGREE", 4);
     allParams->setAttributeValue("DISPLAY_ALL_EVAL", false);
     allParams->setAttributeValue("DISPLAY_UNSUCCESSFUL", false);
 
