@@ -11,7 +11,7 @@
 /**
  Generate the trial points (Poll::startImp), launch evaluation (Poll::runImp) and postprocecssing (Poll::endImp).
  */
-class Poll: public Step , public MadsIterationUtils
+class Poll final : public Step , public MadsIterationUtils
 {
 private:
     std::vector<std::shared_ptr<NOMAD::PollMethod>> _pollMethods;
@@ -45,9 +45,10 @@ private:
     void init();
 
     
-    // Identify if there is at least one poll enabled. If there are none,
-    // do not print Search step at all.
+    // Identify if there is at least one poll enabled.
     bool isEnabled() const;
+
+	
     /// Implementation for start tasks for MADS poll.
     /**
      Call to generate trial points and test for mesh precision
@@ -67,8 +68,6 @@ private:
      */
     virtual void endImp() override ;
     
-
-
 };
 
 #include "../../nomad_nsend.hpp"

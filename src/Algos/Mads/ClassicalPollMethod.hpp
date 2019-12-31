@@ -3,34 +3,29 @@
 
 #include "../../Algos/Mads/PollMethod.hpp"
 
-
 #include "../../nomad_nsbegin.hpp"
-
 
 
 // \class ClassicalPoll for Step 3. of MADS algorithm.
 class ClassicalPollMethod final : public PollMethod
 {
-
-
 public:
     /// Constructor
     /**
      \param parentStep The parent of this poll step
      */
-    explicit ClassicalPollMethod(const NOMAD::Step* parentStep )
+    explicit ClassicalPollMethod(const Step* parentStep )
     : PollMethod(parentStep)
     {
         init();
     }
     ~ClassicalPollMethod() {}
-
-    /// Generate new points to evaluate
-    void generateTrialPoints() override ;
-
     
 private:
     void init();
+
+    /// Generate new points to evaluate
+    void generateTrialPoints() override ;
 
     /*------------------------------*/
     /* Private methods used by poll */

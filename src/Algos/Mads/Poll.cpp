@@ -42,27 +42,35 @@ void NOMAD::Poll::startImp()
 }
 
 
-void NOMAD::Poll::endImp()
-{
-    postProcessing(getEvalType());
-}
-
-
 bool NOMAD::Poll::runImp()
 {
     bool foundBetter = false;
+    std::string s;
 
     // This function should be called only when trial points are generated for each search method separately and evaluated.
-    verifyGenerateAllPointsBeforeEval("Search::start()", false);
+    verifyGenerateAllPointsBeforeEval(__PRETTY_FUNCTION__, false);
+
+    if (!isEnabled())
+    {
+        // Early out --> no found better!
+        AddOutputDebug("Search method is disabled. Early out.");
+        return false;
+    }
+
 
     NOMAD::SuccessType bestSuccessYet = NOMAD::SuccessType::NOT_EVALUATED;
     NOMAD::SuccessType success = NOMAD::SuccessType::NOT_EVALUATED;
 
     // Go through all search methods until we get a success.
+    s = "Going through all poll methods until we get a success";
+    AddOutputDebug(s);
     for (size_t i = 0; !foundBetter && i < _pollMethods.size(); i++)
     {
         auto pollMethod = _pollMethods[i];
-        if (!pollMethod->isEnabled()) { continue; }
+        bool enabled = pollMethod->isEnabled();
+        s = "Search method " + pollMethod->getName() + (enabled ? " is enabled" : " not enabled");
+        AddOutputDebug(s);
+        if (!enabled) { continue; }
         pollMethod->start();
         foundBetter = pollMethod->run();
         success = pollMethod->getSuccessType();
@@ -74,12 +82,12 @@ bool NOMAD::Poll::runImp()
 
         if (foundBetter)
         {
-            // Do not go through the other search methods if we found
+            // Do not go through the other poll methods if we found
             // an improving solution.
-            std::string s = pollMethod->getName();
+            s = pollMethod->getName();
             s += " found an improving solution. Stop reason: ";
             s += _stopReasons->getStopReasonAsString() ;
-            
+
             AddOutputInfo(s);
             break;
         }
@@ -90,6 +98,23 @@ bool NOMAD::Poll::runImp()
     return foundBetter;
 }
 
+void NOMAD::Poll::endImp()
+{
+    verifyGenerateAllPointsBeforeEval(__PRETTY_FUNCTION__, false);
+
+    if (!isEnabled())
+    {
+        // Early out
+        return;
+    }
+
+    // Need to reset the EvalStopReason if a sub optimization is used during Search and the max bb is reached for this sub optimization
+    if (_stopReasons->testIf(NOMAD::EvalStopType::LAP_MAX_BB_EVAL_REACHED))
+    {
+        _stopReasons->set(NOMAD::EvalStopType::STARTED);
+    }
+
+}
 
 // Generate trial points for ALL enabled search methods.
 // To be used only when parameter GENERATE_ALL_POINTS_BEFORE_EVAL is true.

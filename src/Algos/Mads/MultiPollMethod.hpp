@@ -38,8 +38,6 @@ private:
     std::list<NOMAD::Direction> householder(const NOMAD::Direction &initDir, bool completeTo2n ) const;
 
 
-
-
     void multiPollDir(std::list<NOMAD::Direction> &primaryPollDirs) const;
 
     std::list<NOMAD::Direction> strategicalDirections() const;

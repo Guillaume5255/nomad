@@ -60,7 +60,6 @@ void NOMAD::SearchMethod::startImp()
 {
     verifyGenerateAllPointsBeforeEval(__PRETTY_FUNCTION__, false);
 
-
     if ( ! _stopReasons->checkTerminate() )
     {
         // Create EvalPoints

@@ -12,6 +12,8 @@ private:
     // Should this poll method be used? Modified by parameters.
     bool _enabled;
 
+	    /// AlgoComment to show when this PollMethod is used
+    std::string _comment;
 public:
     /// Constructor
     /**
@@ -20,7 +22,8 @@ public:
     explicit PollMethod( const NOMAD::Step* parentStep )
       : Step( parentStep ),
         MadsIterationUtils ( parentStep ),
-        _enabled(true)
+        _enabled(true),
+        _comment("")
     {
         init();
     }
@@ -28,6 +31,10 @@ public:
     // Get / Set
     bool isEnabled() const { return _enabled; }
     void setEnabled(const bool enabled) { _enabled = enabled; }
+
+    const std::string& getComment() const { return _comment; }
+    bool hasComment() const { return (!_comment.empty()); }
+    void setComment(const std::string& comment) { _comment = comment; }
 
     // Step methods
     virtual void startImp() override ;

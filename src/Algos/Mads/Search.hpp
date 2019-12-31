@@ -57,7 +57,7 @@
 class Search final : public Step , public MadsIterationUtils
 {
 private:
-    std::vector<std::shared_ptr<SearchMethod>> _searchMethods;
+    std::vector<std::shared_ptr<NOMAD::SearchMethod>> _searchMethods;
 
 public:
     /// Constructor
