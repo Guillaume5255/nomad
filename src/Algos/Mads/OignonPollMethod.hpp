@@ -2,6 +2,8 @@
 #define __NOMAD400_OIGNONPOLLMETHOD__
 
 #include "../../Algos/Mads/PollMethod.hpp"
+#include "../../Algos/Mads/Mads.hpp"
+
 
 #include "../../nomad_nsbegin.hpp"
 
@@ -15,12 +17,18 @@ class OignonPollMethod final : public PollMethod
 public:
     /// Constructor
     /**
-     /param parentStep      The parent of this search step -- \b IN.
+     /param parentStep      The parent of this poll step -- \b IN.
      */
     explicit OignonPollMethod(const NOMAD::Step* parentStep )
     : PollMethod( parentStep )
     {
         init();
+		const NOMAD::Mads* mads = dynamic_cast<const NOMAD::Mads*>(parentStep->getParentOfType<NOMAD::Mads*>());
+        if (nullptr == mads)
+        {
+            throw NOMAD::Exception(__FILE__, __LINE__, "Mads OignonPoll without Mads ancestor");
+        }
+		nbOfPreviousFailure = mads->getCumulatedFailure();
     }
     
 private:
@@ -42,7 +50,9 @@ private:
 
     void setPollDirections(std::list<NOMAD::Direction> &directions) const;
 
-    size_t n;
+    size_t n;// dimension
+
+	size_t nbOfPreviousFailure; // is the number of failure before this poll, used to derermine how many layers are created
     
 };
 

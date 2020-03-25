@@ -86,6 +86,7 @@ enum class DisplayStatsType
     DS_TOTAL_SGTE ,    ///< Total number of surrogate evaluations
     DS_BBO        ,    ///< All blackbox outputs
     DS_EVAL       ,    ///< Number of evaluations
+	DS_ITER		  ,    ///< Number of iterations
     DS_CACHE_HITS ,    ///< Number of cache hits
     DS_TIME       ,    ///< Wall-clock time
     DS_MESH_INDEX ,    ///< Mesh index
@@ -124,6 +125,7 @@ private:
     size_t          _blkSize;
     std::string     _bbo;
     size_t          _eval;
+    size_t			_iter;
     size_t          _cacheHits;
     size_t          _time;
     ArrayOfDouble   _meshIndex;
@@ -162,6 +164,7 @@ public:
     void setBlkSize(const size_t blkSize)           { _blkSize = blkSize; }
     void setBBO(const std::string& bbo)             { _bbo = bbo; }
     void setEval(const size_t eval)                 { _eval = eval; }
+    void setIter(const size_t iter)		    { _iter = iter; }
     void setCacheHits(const size_t cacheHits)       { _cacheHits = cacheHits; }
     void setTime(const size_t time)                 { _time = time; }
     void setMeshIndex(const ArrayOfDouble meshIndex) { _meshIndex = meshIndex; }

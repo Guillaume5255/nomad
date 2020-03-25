@@ -91,7 +91,8 @@ public:
         init();
     }
     
-    
+    size_t getCumulatedFailure() const {return cumulatedFailure;}
+
 
 private:
     ///  Initialization of class, to be used by Constructor.
@@ -106,9 +107,11 @@ private:
     
     /// Helper for start()
     void readInformationForHotRestart() override ;
+	
+	mutable size_t cumulatedFailure=0; //counts the number of consecutive failures since the last successful megaiteration
     
-    
-    
+    void updateCumulatedFailure(NOMAD::SuccessType successType);
+
 };
 
 #include "../../nomad_nsend.hpp"

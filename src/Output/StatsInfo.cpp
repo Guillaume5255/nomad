@@ -65,6 +65,7 @@ NOMAD::StatsInfo::StatsInfo()
     _blkSize(0),
     _bbo(),
     _eval(0),
+	_iter(0),
     _cacheHits(0),
     _time(0),
     _meshIndex(),
@@ -158,6 +159,10 @@ NOMAD::DisplayStatsType NOMAD::StatsInfo::stringToDisplayStatsType(const std::st
     {
         ret = NOMAD::DisplayStatsType::DS_EVAL;
     }
+    else if (s == "ITER")
+    {
+        ret = NOMAD::DisplayStatsType::DS_ITER;
+    }
     else if (s == "CACHE_HITS")
     {
         ret = NOMAD::DisplayStatsType::DS_CACHE_HITS;
@@ -239,6 +244,8 @@ std::string NOMAD::StatsInfo::displayStatsTypeToString(const NOMAD::DisplayStats
             return "BBO";
         case NOMAD::DisplayStatsType::DS_EVAL:
             return "EVAL";
+		case NOMAD::DisplayStatsType::DS_ITER:
+			return "ITER";
         case NOMAD::DisplayStatsType::DS_CACHE_HITS:
             return "CACHE_HITS";
         case NOMAD::DisplayStatsType::DS_TIME:
@@ -379,6 +386,10 @@ std::string NOMAD::StatsInfo::display(const NOMAD::DisplayStatsTypeList& format,
         else if (NOMAD::DisplayStatsType::DS_EVAL == statsType)
         {
             out += NOMAD::itos(_eval);
+        }
+		else if (NOMAD::DisplayStatsType::DS_ITER == statsType)
+        {
+            out += NOMAD::itos(_iter);
         }
         else if (NOMAD::DisplayStatsType::DS_CACHE_HITS == statsType)
         {

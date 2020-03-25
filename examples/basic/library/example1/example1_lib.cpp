@@ -161,9 +161,27 @@ void initAllParams(std::shared_ptr<NOMAD::AllParameters> allParams)
     allParams->setAttributeValue("DISPLAY_DEGREE", 4);
     allParams->setAttributeValue("DISPLAY_ALL_EVAL", false);
     allParams->setAttributeValue("DISPLAY_UNSUCCESSFUL", false);
+	allParams->getEvaluatorControlParams()->setAttributeValue("OPPORTUNISTIC_EVAL",false);
+	allParams->getEvaluatorControlParams()->setAttributeValue("BB_MAX_BLOCK_SIZE",(size_t)1);
+
+	//p.getRunParams()->setAttributeValue("H_MAX_0", NOMAD::Double(10000000));
+	allParams->getRunParams()->setAttributeValue("NM_SEARCH",false);
+	allParams->getRunParams()->setAttributeValue("SPECULATIVE_SEARCH",false);
+	allParams->getRunParams()->setAttributeValue("ANISOTROPIC_MESH",false);
+	allParams->getRunParams()->setAttributeValue("NB_THREADS_OPENMP",1);
 
     allParams->getRunParams()->setAttributeValue("HOT_RESTART_READ_FILES", false);
     allParams->getRunParams()->setAttributeValue("HOT_RESTART_WRITE_FILES", false);
+
+    allParams->getRunParams()->setAttributeValue("CLASSICAL_POLL",false);
+    int nb_of_2n_block = 8;
+    allParams->getRunParams()->setAttributeValue("OIGNON_POLL",true);
+    allParams->getRunParams()->setAttributeValue("NUMBER_OF_LAYERS",nb_of_2n_block);
+
+    //allParams->getRunParams()->setAttributeValue("ENRICHED_POLL",true);
+    //allParams->getRunParams()->setAttributeValue("NUMBER_OF_2N_BLOCK",nb_of_2n_block);
+    //allParams->getRunParams()->setAttributeValue("FRAME_LB",NOMAD::Double(0));
+    //allParams->getRunParams()->setAttributeValue("FRAME_UB",NOMAD::Double(1));
 
     
     // Parameters validation

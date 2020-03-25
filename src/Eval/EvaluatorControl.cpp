@@ -752,7 +752,6 @@ void NOMAD::EvaluatorControl::AddStatsInfo(const NOMAD::BlockForEval& block) con
         // they do not, for example if too many iterations end up with the same
         // value, or if the user is dissatisfied with this output, we may update it
         // in a stricter way.
-
         stats->setObj(evalQueuePoint->getF(NOMAD::EvalType::BB));
         stats->setConsH(evalQueuePoint->getH(NOMAD::EvalType::BB));
         stats->setHMax(getHMax());
@@ -764,6 +763,7 @@ void NOMAD::EvaluatorControl::AddStatsInfo(const NOMAD::BlockForEval& block) con
         stats->setBlkSize(block.size());
         stats->setBBO(evalQueuePoint->getBBO(NOMAD::EvalType::BB));
         stats->setEval(_nbEvalSentToEvaluator);
+		stats->setIter(evalQueuePoint->getK());
         stats->setCacheHits(NOMAD::CacheBase::getNbCacheHits());
         stats->setTime(NOMAD::Clock::getTimeSinceStart());
         stats->setMeshIndex(unknownMeshIndex);

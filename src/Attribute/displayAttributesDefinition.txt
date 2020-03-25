@@ -53,6 +53,7 @@ BBE OBJ
     CACHE_HITS : cache hits
     CONS_H     : infeasibility (h) value
     EVAL       : evaluations (includes cache hits)
+    ITER       : iteration
     GEN_STEP   : name of the step that generated this point to evaluate
     H_MAX      : max infeasibility (h) acceptable
     LAP        : number of lap evaluations since last reset

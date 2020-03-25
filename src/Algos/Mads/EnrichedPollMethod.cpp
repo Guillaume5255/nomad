@@ -86,8 +86,8 @@ std::list<NOMAD::Direction> NOMAD::EnrichedPollMethod::strategicalDirections() c
         throw NOMAD::Exception(__FILE__, __LINE__, err);
     }
 
-    int nb2NblockOfDir = _runParams->getAttributeValue<int>("NUMBER_OF_2N_BLOCK");
-
+    int nb2NblockOfDir = std::min(_runParams->getAttributeValue<int>("NUMBER_OF_2N_BLOCK"), (int)nbOfPreviousFailure+(int)1);
+	AddOutputInfo("Number of 2n blocks generated : "+std::to_string(nb2NblockOfDir), NOMAD::OutputLevel::LEVEL_VERY_HIGH);
 
     for(int j=0;j <nb2NblockOfDir; j++){
         {

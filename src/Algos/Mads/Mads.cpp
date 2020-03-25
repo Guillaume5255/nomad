@@ -104,6 +104,8 @@ bool NOMAD::Mads::runImp()
             mesh    = megaIteration.getMesh();
             megaIterSuccess = megaIteration.getSuccessType();
 
+			updateCumulatedFailure(megaIterSuccess);
+
             if (_userInterrupt)
             {
                 hotRestartOnUserInterrupt();
@@ -150,4 +152,11 @@ void NOMAD::Mads::readInformationForHotRestart()
             NOMAD::read<NOMAD::Mads>(*this, hotRestartFile);
         }
     }
+}
+
+void NOMAD::Mads::updateCumulatedFailure(NOMAD::SuccessType successType){
+    if (successType == NOMAD::SuccessType::UNSUCCESSFUL)
+        this->cumulatedFailure += (size_t)1;
+	else
+		this->cumulatedFailure = (size_t)0;
 }
