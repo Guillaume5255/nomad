@@ -1107,3 +1107,17 @@ NOMAD::Double
 \( advanced \)
 ALGO_COMPATIBILITY_CHECK yes
 ################################################################################
+DYNAMIC_POLL
+bool
+true
+\(Specifies if we allow the number of poll directions to increase when there is a succession of failure improving f. Only takes effect when OIGNON_POLL or ENRICHED_POLL are enabled.\)
+\(
+    .If true, the number of direction will be increased of 2n at each unsuccessful iteration and reset to 2n at each successful iteration.
+
+    .NUMBER_OF_2N_BLOCK or NUMBER_OF_LAYERS are used as maximum.
+
+    .Else, depending on the coarsness of the mesh we generate 2*n*NUMBER_OF_2N_BLOCK or 2*n*NUMBER_OF_LAYERS directions.
+\)
+\( advanced \)
+ALGO_COMPATIBILITY_CHECK yes
+################################################################################
