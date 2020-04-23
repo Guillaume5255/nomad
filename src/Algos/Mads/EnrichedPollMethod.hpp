@@ -55,7 +55,7 @@ private:
 
     /// \note Multiplicative factor TODO
 
-	size_t nbOfPreviousFailure; // is the number of failure before this poll, used to derermine how many layers are created
+	int nbOfPreviousFailure; // is the number of failure before this poll, used to derermine how many layers are created
 
     
 };

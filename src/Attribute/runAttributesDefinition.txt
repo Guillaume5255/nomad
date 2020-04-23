@@ -1121,3 +1121,28 @@ true
 \( advanced \)
 ALGO_COMPATIBILITY_CHECK yes
 ################################################################################
+INTENSIFICATION_FACTOR
+std::string
+LINEAR
+\(specifies the way we increase the number of poll directions. Only takes effect on OIGNON_POLL and ENRICHED_POLL when DYNAMIC_POLL is enabled.\)
+\(
+	.LINEAR : at every failre we increase of 1 the number of 2n blocks
+
+	.EXPONENTIAL : at every failre we multiplicate by 2 the number of 2n blocks
+
+\)
+\( advanced \)
+ALGO_COMPATIBILITY_CHECK yes
+################################################################################
+REMEMBER_PREVIOUS_FAILURE
+bool
+false
+\(For dynamic poll specifies if the number of 2n blocks is reset to 1 at each success or decreased following the same scheme as for the increase\)
+\(
+	.If true, the number of 2n block is not reset to 1 when there is a success
+
+	.If false, the number of 2n block is reset to 1 when there is a success
+\)
+\( advanced \)
+ALGO_COMPATIBILITY_CHECK yes
+################################################################################

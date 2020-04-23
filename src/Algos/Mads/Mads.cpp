@@ -155,8 +155,17 @@ void NOMAD::Mads::readInformationForHotRestart()
 }
 
 void NOMAD::Mads::updateCumulatedFailure(NOMAD::SuccessType successType){
-    if (successType == NOMAD::SuccessType::UNSUCCESSFUL)
-        this->cumulatedFailure += (size_t)1;
-	else
-		this->cumulatedFailure = (size_t)0;
+	bool memoryEnabled = _runParams->getAttributeValue<bool>("REMEMBER_PREVIOUS_FAILURE");
+	if (!memoryEnabled){
+		if (successType == NOMAD::SuccessType::UNSUCCESSFUL)
+			this->cumulatedFailure += 1;
+		else
+			this->cumulatedFailure = 0;
+	}
+	else{
+		if (successType == NOMAD::SuccessType::UNSUCCESSFUL)
+			this->cumulatedFailure += 1;
+		else 
+			this->cumulatedFailure = std::max(this->cumulatedFailure - 1, 0); //we only want positves values for cumulatedFailure so we do not decrease it below 0
+	}
 }

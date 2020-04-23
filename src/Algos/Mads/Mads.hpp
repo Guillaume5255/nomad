@@ -91,7 +91,7 @@ public:
         init();
     }
     
-    size_t getCumulatedFailure() const {return cumulatedFailure;}
+    int getCumulatedFailure() const {return cumulatedFailure;}
 
 
 private:
@@ -108,7 +108,7 @@ private:
     /// Helper for start()
     void readInformationForHotRestart() override ;
 	
-	mutable size_t cumulatedFailure=0; //counts the number of consecutive failures since the last successful megaiteration
+	mutable int cumulatedFailure = 0; //counts the number of consecutive failures since the last successful megaiteration
     
     void updateCumulatedFailure(NOMAD::SuccessType successType);
 
