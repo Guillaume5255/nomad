@@ -168,6 +168,7 @@ void NOMAD::SgtelibModelOptimize::setupRunParameters()
     // Ensure there is no model used in model optimization.
     _optRunParams->setAttributeValue("SGTELIB_SEARCH", false);
     _optRunParams->setAttributeValue("DISABLE", std::string("MODELS"));
+    _optRunParams->setAttributeValue("H_MAX_0", NOMAD::Double(NOMAD::INF));
 
     // Use isotropic mesh
     _optRunParams->setAttributeValue("ANISOTROPIC_MESH", false);
@@ -180,8 +181,13 @@ void NOMAD::SgtelibModelOptimize::setupRunParameters()
 
     // Disable user calls
     _optRunParams->setAttributeValue("USER_CALLS_ENABLED", false);
+    // Use classical poll
+    _optRunParams->setAttributeValue("OIGNON_POLL",false);
+    _optRunParams->setAttributeValue("ENRICHED_POLL",false);
+    _optRunParams->setAttributeValue("CLASSICAL_POLL",true);
 
     _optRunParams->checkAndComply(evcParams, _pbParams);
+
 }
 
 

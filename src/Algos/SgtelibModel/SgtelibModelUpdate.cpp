@@ -175,7 +175,7 @@ bool NOMAD::SgtelibModelUpdate::runImp()
     }
     evalPointList = evalPointListWithinRadius;
     size_t nbValidPoints = evalPointList.size();
-
+/*
     if (nbValidPoints > maxNbPoints)
     {
         s = "SgtelibModel found " + std::to_string(nbValidPoints);
@@ -193,7 +193,7 @@ bool NOMAD::SgtelibModelUpdate::runImp()
         evalPointList = evalPointListShort;
         nbValidPoints = evalPointList.size();
     }
-
+*/
     if (nbValidPoints < minNbPoints)
     {
         // If no points available, it is impossible to build a model.

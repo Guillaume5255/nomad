@@ -84,15 +84,15 @@ std::list<NOMAD::Direction> NOMAD::OignonPollMethod::strategicalDirections() con
     
 
     int nbLayers;
-	if(_runParams->getAttributeValue<bool>("DYNAMIC_POLL"))
+	if(_runParams->getAttributeValue<bool>("DYNAMIC_POLL")){
 		if(_runParams->getAttributeValue<std::string>("INTENSIFICATION_FACTOR") == "EXPONENTIAL" )
 			nbLayers = std::min( _runParams->getAttributeValue<int>("NUMBER_OF_LAYERS"), (int)std::pow(2.0, (float)nbOfPreviousFailure) );
 		else
 			nbLayers = std::min( _runParams->getAttributeValue<int>("NUMBER_OF_LAYERS"), (int)nbOfPreviousFailure+(int)1 );
-		
-	else
+	}
+	else{
 		nbLayers = _runParams->getAttributeValue<int>("NUMBER_OF_LAYERS");
-		
+	}
 	// maybe we can write it in a more general way : nbLayers = f(_runParams->getAttributeValue<int>("NUMBER_OF_LAYERS"),(int)nbOfPreviousFailure)
 	AddOutputInfo("Number of layers generated : "+std::to_string(nbLayers), NOMAD::OutputLevel::LEVEL_VERY_HIGH);
     for(int j=1 ; j<nbLayers+1 ; j++){

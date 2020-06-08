@@ -158,18 +158,21 @@ void initAllParams(std::shared_ptr<NOMAD::AllParameters> allParams)
     bbOutputTypes.push_back(NOMAD::BBOutputType::EB);     // c2000
     allParams->setAttributeValue("BB_OUTPUT_TYPE", bbOutputTypes );
     
-    allParams->setAttributeValue("DISPLAY_DEGREE", 4);
+    allParams->setAttributeValue("DISPLAY_DEGREE", 2);
     allParams->setAttributeValue("DISPLAY_ALL_EVAL", false);
     allParams->setAttributeValue("DISPLAY_UNSUCCESSFUL", false);
-	allParams->getEvaluatorControlParams()->setAttributeValue("OPPORTUNISTIC_EVAL",false);
+	allParams->getDispParams()->setAttributeValue("DISPLAY_STATS", NOMAD::ArrayOfString("ITER EVAL BBO"));
+	allParams->getEvaluatorControlParams()->setAttributeValue("OPPORTUNISTIC_EVAL",true);
 	allParams->getEvaluatorControlParams()->setAttributeValue("BB_MAX_BLOCK_SIZE",(size_t)1);
-
+	
 	//p.getRunParams()->setAttributeValue("H_MAX_0", NOMAD::Double(10000000));
+	//allParams->getRunParams()->setAttributeValue("LH_SEARCH",NOMAD::LHSearchType("16 16"));
 	allParams->getRunParams()->setAttributeValue("NM_SEARCH",false);
-	allParams->getRunParams()->setAttributeValue("SPECULATIVE_SEARCH",false);
-	allParams->getRunParams()->setAttributeValue("ANISOTROPIC_MESH",false);
+	//allParams->getRunParams()->setAttributeValue("SGTELIB_SEARCH",true);
+	allParams->getRunParams()->setAttributeValue("ANISOTROPIC_MESH",true);
 	allParams->getRunParams()->setAttributeValue("NB_THREADS_OPENMP",1);
-
+	allParams->getRunParams()->setAttributeValue("SPECULATIVE_SEARCH",true);	
+	//allParams->getRunParams()->setAttributeValue("NM_SIMPLEX_INCLUDE_FACTOR", NOMAD::INF_SIZE_T);
     allParams->getRunParams()->setAttributeValue("HOT_RESTART_READ_FILES", false);
     allParams->getRunParams()->setAttributeValue("HOT_RESTART_WRITE_FILES", false);
 
