@@ -132,9 +132,10 @@ std::vector<size_t> NOMAD::LHS::Permutation(const size_t p)
         v.push_back(j);
     }
 
-    std::random_device rd;
-    std::mt19937 g(rd());
-    std::shuffle(v.begin(), v.end(), g);
+//    std::random_device rd;
+//    std::mt19937 g(rd());
+//    std::shuffle(v.begin(), v.end(), g);
+    std::shuffle(v.begin(), v.end(), NOMAD::RNG());
 
     return v;
 }

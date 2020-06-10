@@ -1137,7 +1137,7 @@ ALGO_COMPATIBILITY_CHECK yes
 REMEMBER_PREVIOUS_FAILURE
 bool
 false
-\(For dynamic poll specifies if the number of 2n blocks is reset to 1 at each success or decreased following the same scheme as for the increase\)
+\(For dynamic poll specifies if the number of 2n blocks is reset to 1 at each success (partial susses and full success) or decreased following the same scheme as for the increase\)
 \(
 	.If true, the number of 2n block is not reset to 1 when there is a success
 

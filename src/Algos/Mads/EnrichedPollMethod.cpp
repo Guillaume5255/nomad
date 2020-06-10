@@ -87,10 +87,15 @@ std::list<NOMAD::Direction> NOMAD::EnrichedPollMethod::strategicalDirections() c
     }
     int nb2NblockOfDir;
 	if(_runParams->getAttributeValue<bool>("DYNAMIC_POLL")){
-		if(_runParams->getAttributeValue<std::string>("INTENSIFICATION_FACTOR") == "EXPONENTIAL" )
+		std::string intensificationFactor = _runParams->getAttributeValue<std::string>("INTENSIFICATION_FACTOR");
+		if(intensificationFactor == "EXPONENTIAL" )
 			nb2NblockOfDir = std::min(_runParams->getAttributeValue<int>("NUMBER_OF_2N_BLOCK"), (int)std::pow(2.0, (float)nbOfPreviousFailure));
-		else
+		else if(intensificationFactor == "LINEAR" )
 			nb2NblockOfDir = std::min(_runParams->getAttributeValue<int>("NUMBER_OF_2N_BLOCK"), (int)nbOfPreviousFailure+(int)1);
+		else{
+			std::string err("INTENSIFICATION_FACTOR "+intensificationFactor+" unknown");
+            		throw NOMAD::Exception(__FILE__, __LINE__, err);
+		}
 	}
 	else{ 
 		nb2NblockOfDir = _runParams->getAttributeValue<int>("NUMBER_OF_2N_BLOCK");
